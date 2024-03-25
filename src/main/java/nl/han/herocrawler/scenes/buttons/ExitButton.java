@@ -5,7 +5,7 @@ import javafx.scene.input.MouseButton;
 
 public class ExitButton extends Button {
     public ExitButton(Coordinate2D initialLocation) {
-        super(initialLocation);
+        super(initialLocation, "Start");
     }
 
     @Override

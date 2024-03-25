@@ -5,7 +5,7 @@ import javafx.scene.input.MouseButton;
 
 public class ReplayButton extends Button{
     public ReplayButton(Coordinate2D initialLocation) {
-        super(initialLocation);
+        super(initialLocation, "Start");
     }
 
     @Override

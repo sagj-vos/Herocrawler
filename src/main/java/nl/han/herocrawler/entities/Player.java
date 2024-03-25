@@ -6,6 +6,7 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
 import nl.han.herocrawler.entities.monsters.Monster;
+import nl.han.herocrawler.entities.tiles.UnWalkableTile;
 
 import java.util.List;
 import java.util.Random;
@@ -30,6 +31,11 @@ public class Player extends Entity implements KeyListener {
     @Override
     public void onCollision(List<Collider> list) {
         for (Collider collider : list) {
+            if (collider instanceof UnWalkableTile) {
+                setSpeed(0);
+                continue;
+            }
+
             if (collider instanceof Monster) {
                 this.monsterHit((Monster) collider);
                 continue;
@@ -44,15 +50,15 @@ public class Player extends Entity implements KeyListener {
         } else if (set.contains(KeyCode.DIGIT1)) {
 
         } else if (set.contains(KeyCode.W) || set.contains(KeyCode.UP)) {
-
+            setMotion(3, 180d);
         } else if (set.contains(KeyCode.A) || set.contains(KeyCode.LEFT)) {
-
+            setMotion(3, 270d);
         } else if (set.contains(KeyCode.S) || set.contains(KeyCode.DOWN)) {
-
+            setMotion(3, 0d);
         } else if (set.contains(KeyCode.D) || set.contains(KeyCode.RIGHT)) {
-
+            setMotion(3, 90d);
         } else if (set.isEmpty()) {
-
+            setSpeed(0);
         }
     }
 
