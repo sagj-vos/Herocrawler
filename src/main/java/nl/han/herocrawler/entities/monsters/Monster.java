@@ -5,8 +5,16 @@ import com.github.hanyaeger.api.Size;
 import nl.han.herocrawler.entities.Entity;
 
 public abstract class Monster extends Entity {
-
+    protected int accuracy;
     protected Monster(String resource, Coordinate2D initialLocation, Size size, int rows, int columns) {
         super(resource, initialLocation, size, rows, columns);
+    }
+
+    public int getAccuracy() {
+        return this.accuracy;
+    }
+
+    public int getPower() {
+        return this.power;
     }
 }
