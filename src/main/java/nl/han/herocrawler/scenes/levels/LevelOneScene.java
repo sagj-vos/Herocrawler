@@ -15,7 +15,7 @@ public class LevelOneScene extends DynamicScene implements TileMapContainer {
 
     @Override
     public void setupEntities() {
-        addEntity(new Player("backgrounds/level-background.png", new Coordinate2D(400, 400), new Size(16, 16), 1, 1));
+        addEntity(new Player(new Coordinate2D(400, 400)));
     }
 
     @Override
