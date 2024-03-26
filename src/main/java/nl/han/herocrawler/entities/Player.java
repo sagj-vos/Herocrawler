@@ -32,7 +32,23 @@ public class Player extends Entity implements KeyListener {
     public void onCollision(List<Collider> list) {
         for (Collider collider : list) {
             if (collider instanceof UnWalkableTile) {
+                final int direction = ((int)getDirection());
                 setSpeed(0);
+
+                switch (direction) {
+                    case 180:
+                        setAnchorLocationY(getAnchorLocation().getY() + 1);
+                        break;
+                    case 270:
+                        setAnchorLocationX(getAnchorLocation().getX() + 1);
+                        break;
+                    case 0:
+                        setAnchorLocationY(getAnchorLocation().getY() - 1);
+                        break;
+                    case 90:
+                        setAnchorLocationX(getAnchorLocation().getX() - 1);
+                        break;
+                }
                 continue;
             }
 
