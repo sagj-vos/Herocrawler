@@ -7,6 +7,11 @@ import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
 import nl.han.herocrawler.Herocrawler;
 import nl.han.herocrawler.entities.monsters.Monster;
+import nl.han.herocrawler.entities.objects.Food;
+import nl.han.herocrawler.entities.objects.potions.BluePotion;
+import nl.han.herocrawler.entities.objects.potions.GreenPotion;
+import nl.han.herocrawler.entities.objects.potions.Potion;
+import nl.han.herocrawler.entities.objects.potions.RedPotion;
 import nl.han.herocrawler.entities.tiles.StairsTile;
 import nl.han.herocrawler.entities.tiles.UnWalkableTile;
 
@@ -18,17 +23,19 @@ public class Player extends Entity implements KeyListener {
     private static final int HIT_CHANCE = 100;
     private static final int ARMOR_PROTECTION_VALUE = 13;
 
-    private Herocrawler herocrawler;
+    private final Herocrawler herocrawler;
     private int numberOfShields;
     private int level;
+    private double speed;
 
 
     public Player(Herocrawler herocrawler, Coordinate2D initialLocation) {
-        super("sprites/player.png", initialLocation, new Size(32, 32), 1, 1);
+        super("sprites/player.png", initialLocation, new Size(32, 32));
 
         this.herocrawler = herocrawler;
         this.level = 1;
         this.power = 1;
+        this.speed = 1;
         this.numberOfHearts = 5;
         this.numberOfShields = 1;
     }
@@ -37,6 +44,10 @@ public class Player extends Entity implements KeyListener {
     @Override
     public void onCollision(List<Collider> colliders) {
         for (Collider collider : colliders) {
+            if (collider instanceof Entity) {
+                ((Entity)collider).playSound();
+            }
+
             if (collider instanceof UnWalkableTile) {
                 this.stopMovement();
                 continue;
@@ -47,9 +58,41 @@ public class Player extends Entity implements KeyListener {
                 continue;
             }
 
+            if (collider instanceof Food) {
+                if (this.numberOfHearts >= 5) continue;
+
+                this.numberOfHearts += 1;
+                continue;
+            }
+
+            if (collider instanceof Potion) {
+                if (collider instanceof RedPotion) {
+                    if (this.numberOfHearts >= 5) continue;
+                    if (this.numberOfHearts == 4) {
+                        this.numberOfHearts += 1;
+                    } else {
+                        this.numberOfHearts += 2;
+                    }
+
+                    continue;
+                }
+
+                if (collider instanceof BluePotion) {
+                    if (this.numberOfShields >= 3) continue;
+
+                    this.numberOfShields += 1;
+
+                    continue;
+                }
+
+                if (collider instanceof GreenPotion) {
+                    this.speed *= 1.25;
+                    continue;
+                }
+            }
+
             if (collider instanceof Monster) {
                 this.monsterHit((Monster) collider);
-                continue;
             }
         }
     }
@@ -69,19 +112,19 @@ public class Player extends Entity implements KeyListener {
                     break;
                 case KeyCode.W:
                 case KeyCode.UP:
-                    setMotion(1, 180d);
+                    setMotion(this.speed, 180d);
                     break;
                 case KeyCode.A:
                 case KeyCode.LEFT:
-                    setMotion(1, 270d);
+                    setMotion(this.speed, 270d);
                     break;
                 case KeyCode.S:
                 case KeyCode.DOWN:
-                    setMotion(1, 0d);
+                    setMotion(this.speed, 0d);
                     break;
                 case KeyCode.D:
                 case KeyCode.RIGHT:
-                    setMotion(1, 90d);
+                    setMotion(this.speed, 90d);
                     break;
             }
         }
@@ -120,13 +163,13 @@ public class Player extends Entity implements KeyListener {
         final int result = rand.nextInt(chance);
 
         // Do nothing if the monster missed
-        if (collider.getAccuracy() > result) return;
+        if (collider.getAccuracy() < result) return;
 
         // First remove shields before starting with the hearts
         if (this.numberOfShields > 0) {
             this.numberOfShields -= collider.getPower();
 
-            //
+            // If too many shields are taken away, subtract from hearts
             if (this.numberOfShields < 0) {
                 this.numberOfHearts += this.numberOfShields;
                 this.numberOfShields = 0;
@@ -134,5 +177,17 @@ public class Player extends Entity implements KeyListener {
         } else {
             this.numberOfHearts -= collider.getPower();
         }
+
+        this.playSound();
+    }
+
+    @Override
+    public void playSound() {
+        System.out.println("Take This.");
+    }
+
+    @Override
+    public int getPower() {
+        return this.power * this.level;
     }
 }
