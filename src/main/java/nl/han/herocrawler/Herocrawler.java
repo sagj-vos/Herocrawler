@@ -2,13 +2,9 @@ package nl.han.herocrawler;
 
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.YaegerGame;
-import nl.han.herocrawler.scenes.Level1;
+import nl.han.herocrawler.scenes.GameOverScene;
 import nl.han.herocrawler.scenes.TitleScene;
 
-/**
- * Hello world!
- *
- */
 public class Herocrawler extends YaegerGame {
     public static void main( String[] args ) {
         launch(args);
@@ -22,7 +18,7 @@ public class Herocrawler extends YaegerGame {
 
     @Override
     public void setupScenes() {
-        addScene(0, new TitleScene());
-        addScene(1, new Level1());
+        addScene(0, new TitleScene(this));
+        addScene(1, new GameOverScene(this));
     }
 }
