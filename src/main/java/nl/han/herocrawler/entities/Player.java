@@ -5,7 +5,9 @@ import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
+import nl.han.herocrawler.Herocrawler;
 import nl.han.herocrawler.entities.monsters.Monster;
+import nl.han.herocrawler.entities.tiles.StairsTile;
 import nl.han.herocrawler.entities.tiles.UnWalkableTile;
 
 import java.util.List;
@@ -15,12 +17,16 @@ import java.util.Set;
 public class Player extends Entity implements KeyListener {
     private static final int HIT_CHANCE = 100;
     private static final int ARMOR_PROTECTION_VALUE = 13;
+
+    private Herocrawler herocrawler;
     private int numberOfShields;
     private int level;
 
-    public Player(Coordinate2D initialLocation) {
+
+    public Player(Herocrawler herocrawler, Coordinate2D initialLocation) {
         super("sprites/player.png", initialLocation, new Size(32, 32), 1, 1);
 
+        this.herocrawler = herocrawler;
         this.level = 1;
         this.power = 1;
         this.numberOfHearts = 5;
@@ -29,26 +35,15 @@ public class Player extends Entity implements KeyListener {
 
 
     @Override
-    public void onCollision(List<Collider> list) {
-        for (Collider collider : list) {
+    public void onCollision(List<Collider> colliders) {
+        for (Collider collider : colliders) {
             if (collider instanceof UnWalkableTile) {
-                final int direction = ((int)getDirection());
-                setSpeed(0);
+                this.stopMovement();
+                continue;
+            }
 
-                switch (direction) {
-                    case 180:
-                        setAnchorLocationY(getAnchorLocation().getY() + 1);
-                        break;
-                    case 270:
-                        setAnchorLocationX(getAnchorLocation().getX() + 1);
-                        break;
-                    case 0:
-                        setAnchorLocationY(getAnchorLocation().getY() - 1);
-                        break;
-                    case 90:
-                        setAnchorLocationX(getAnchorLocation().getX() - 1);
-                        break;
-                }
+            if (collider instanceof StairsTile) {
+                this.levelUp();
                 continue;
             }
 
@@ -90,6 +85,31 @@ public class Player extends Entity implements KeyListener {
                     break;
             }
         }
+    }
+
+    private void stopMovement() {
+        final int direction = ((int)getDirection());
+        setSpeed(0);
+
+        switch (direction) {
+            case 180:
+                setAnchorLocationY(getAnchorLocation().getY() + 1);
+                break;
+            case 270:
+                setAnchorLocationX(getAnchorLocation().getX() + 1);
+                break;
+            case 0:
+                setAnchorLocationY(getAnchorLocation().getY() - 1);
+                break;
+            case 90:
+                setAnchorLocationX(getAnchorLocation().getX() - 1);
+                break;
+        }
+    }
+
+    private void levelUp() {
+        this.level += 1;
+        this.herocrawler.setActiveScene(this.level);
     }
 
     private void monsterHit(Monster collider) {
