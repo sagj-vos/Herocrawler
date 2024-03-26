@@ -32,7 +32,23 @@ public class Player extends Entity implements KeyListener {
     public void onCollision(List<Collider> list) {
         for (Collider collider : list) {
             if (collider instanceof UnWalkableTile) {
+                final int direction = ((int)getDirection());
                 setSpeed(0);
+
+                switch (direction) {
+                    case 180:
+                        setAnchorLocationY(getAnchorLocation().getY() + 1);
+                        break;
+                    case 270:
+                        setAnchorLocationX(getAnchorLocation().getX() + 1);
+                        break;
+                    case 0:
+                        setAnchorLocationY(getAnchorLocation().getY() - 1);
+                        break;
+                    case 90:
+                        setAnchorLocationX(getAnchorLocation().getX() - 1);
+                        break;
+                }
                 continue;
             }
 
@@ -66,29 +82,14 @@ public class Player extends Entity implements KeyListener {
                     break;
                 case KeyCode.S:
                 case KeyCode.DOWN:
-                    setMotion(3, 0d);
+                    setMotion(1, 0d);
                     break;
                 case KeyCode.D:
                 case KeyCode.RIGHT:
-                    setMotion(3, 90d);
+                    setMotion(1, 90d);
                     break;
             }
         }
-//        if (set.contains(KeyCode.SPACE)) {
-//
-//        } else if (set.contains(KeyCode.DIGIT1)) {
-//
-//        } else if (set.contains(KeyCode.W) || set.contains(KeyCode.UP)) {
-//            setMotion(3, 180d);
-//        } else if (set.contains(KeyCode.A) || set.contains(KeyCode.LEFT)) {
-//            setMotion(3, 270d);
-//        } else if (set.contains(KeyCode.S) || set.contains(KeyCode.DOWN)) {
-//            setMotion(3, 0d);
-//        } else if (set.contains(KeyCode.D) || set.contains(KeyCode.RIGHT)) {
-//            setMotion(3, 90d);
-//        } else if (set.isEmpty()) {
-//            setSpeed(0);
-//        }
     }
 
     private void monsterHit(Monster collider) {

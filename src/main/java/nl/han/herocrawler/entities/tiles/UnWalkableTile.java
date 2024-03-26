@@ -7,7 +7,7 @@ import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 
 public final class UnWalkableTile extends SpriteEntity implements Collider {
 
-    public UnWalkableTile(String resource, Coordinate2D initialLocation, Size size) {
+    public UnWalkableTile(Coordinate2D initialLocation, Size size, String resource) {
         super(resource, initialLocation, size);
     }
 }
