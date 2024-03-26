@@ -3,6 +3,7 @@ package nl.han.herocrawler.entities;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
+import com.github.hanyaeger.api.media.SoundClip;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
 import nl.han.herocrawler.Herocrawler;
@@ -183,7 +184,8 @@ public class Player extends Entity implements KeyListener {
 
     @Override
     public void playSound() {
-        System.out.println("Take This.");
+        var attackSound = new SoundClip("audio/humanattack.mp3");
+        attackSound.play();
     }
 
     @Override

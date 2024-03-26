@@ -3,6 +3,7 @@ package nl.han.herocrawler.entities.monsters;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
+import com.github.hanyaeger.api.media.SoundClip;
 import nl.han.herocrawler.Herocrawler;
 import nl.han.herocrawler.entities.Player;
 
@@ -39,6 +40,7 @@ public class Raas extends Monster{
 
     @Override
     public void playSound() {
-        System.out.println("Raaaaaaas!");
+        var attackSound = new SoundClip("audio/raafattack.mp3");
+        attackSound.play();
     }
 }

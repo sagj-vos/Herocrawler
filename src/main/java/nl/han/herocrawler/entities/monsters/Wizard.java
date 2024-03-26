@@ -3,6 +3,7 @@ package nl.han.herocrawler.entities.monsters;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
+import com.github.hanyaeger.api.media.SoundClip;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class Wizard extends Monster {
 
     @Override
     public void playSound() {
-        System.out.println("I'm a wizard Gandalf!");
+        var attackSound = new SoundClip("audio/wizardattack.mp3");
+        attackSound.play();
     }
 }
