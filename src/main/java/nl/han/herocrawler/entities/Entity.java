@@ -11,7 +11,13 @@ public abstract class Entity extends DynamicSpriteEntity implements Collider, Co
     protected int power;
 
 
-    protected Entity(String resource, Coordinate2D initialLocation, Size size, int rows, int columns) {
-        super(resource, initialLocation, size, rows, columns);
+    protected Entity(String resource, Coordinate2D initialLocation, Size size) {
+        super(resource, initialLocation, size);
+    }
+
+    public abstract void playSound();
+
+    public int getPower() {
+        return this.power;
     }
 }

@@ -15,4 +15,9 @@ public class Wizard extends Monster {
     public void onCollision(List<Collider> list) {
 
     }
+
+    @Override
+    public void playSound() {
+        System.out.println("I'm a wizard Gandalf!");
+    }
 }
