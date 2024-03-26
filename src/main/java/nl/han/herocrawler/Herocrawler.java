@@ -22,7 +22,7 @@ public class Herocrawler extends YaegerGame {
     public void setupScenes() {
         addScene(0, new TitleScene(this));
         addScene(1, new LevelOneScene());
-        addScene(2, new LevelTwoScene());
+        addScene(2, new LevelTwoScene(this));
         addScene(3, new GameOverScene(this));
     }
 }
