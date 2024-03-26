@@ -1,6 +1,7 @@
 package nl.han.herocrawler.scenes.tilemaps;
 
 import com.github.hanyaeger.api.scenes.TileMap;
+import nl.han.herocrawler.entities.tiles.StairsTile;
 import nl.han.herocrawler.entities.tiles.UnWalkableTile;
 import nl.han.herocrawler.entities.tiles.WalkableTile;
 
@@ -19,5 +20,6 @@ public abstract class LevelTileMap extends TileMap {
         addEntity(9, WalkableTile.class, "tiles/tile-top.png");
         addEntity(10, WalkableTile.class, "tiles/tile-top-left.png");
         addEntity(11, WalkableTile.class, "tiles/tile-top-right.png");
+        addEntity(12, StairsTile.class, "tiles/tile-stairs.png");
     }
 }
