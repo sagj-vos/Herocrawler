@@ -2,13 +2,12 @@ package nl.han.herocrawler.scenes.buttons;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import javafx.scene.input.MouseButton;
-import javafx.scene.paint.Color;
 import nl.han.herocrawler.Herocrawler;
 
 public class StartButton extends Button{
-    private Herocrawler herocrawler;
+    private final Herocrawler herocrawler;
     public StartButton(Coordinate2D initialLocation, Herocrawler herocrawler) {
-        super(initialLocation, "Start");
+        super(initialLocation, "START");
         this.herocrawler = herocrawler;
     }
 
