@@ -18,7 +18,7 @@ public class Player extends Entity implements KeyListener {
     private int numberOfShields;
     private int level;
 
-    protected Player(Coordinate2D initialLocation) {
+    public Player(Coordinate2D initialLocation) {
         super("sprites/player.png", initialLocation, new Size(32, 32), 1, 1);
 
         this.level = 1;
