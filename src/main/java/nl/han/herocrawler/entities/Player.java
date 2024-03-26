@@ -44,22 +44,51 @@ public class Player extends Entity implements KeyListener {
     }
 
     @Override
-    public void onPressedKeysChange(Set<KeyCode> set) {
-        if (set.contains(KeyCode.SPACE)) {
-
-        } else if (set.contains(KeyCode.DIGIT1)) {
-
-        } else if (set.contains(KeyCode.W) || set.contains(KeyCode.UP)) {
-            setMotion(3, 180d);
-        } else if (set.contains(KeyCode.A) || set.contains(KeyCode.LEFT)) {
-            setMotion(3, 270d);
-        } else if (set.contains(KeyCode.S) || set.contains(KeyCode.DOWN)) {
-            setMotion(3, 0d);
-        } else if (set.contains(KeyCode.D) || set.contains(KeyCode.RIGHT)) {
-            setMotion(3, 90d);
-        } else if (set.isEmpty()) {
+    public void onPressedKeysChange(Set<KeyCode> keyCodes) {
+        if (keyCodes.isEmpty()) {
             setSpeed(0);
+            return;
         }
+
+        for (KeyCode keyCode : keyCodes) {
+            switch (keyCode) {
+                case KeyCode.SPACE:
+                    break;
+                case KeyCode.DIGIT1:
+                    break;
+                case KeyCode.W:
+                case KeyCode.UP:
+                    setMotion(1, 180d);
+                    break;
+                case KeyCode.A:
+                case KeyCode.LEFT:
+                    setMotion(1, 270d);
+                    break;
+                case KeyCode.S:
+                case KeyCode.DOWN:
+                    setMotion(3, 0d);
+                    break;
+                case KeyCode.D:
+                case KeyCode.RIGHT:
+                    setMotion(3, 90d);
+                    break;
+            }
+        }
+//        if (set.contains(KeyCode.SPACE)) {
+//
+//        } else if (set.contains(KeyCode.DIGIT1)) {
+//
+//        } else if (set.contains(KeyCode.W) || set.contains(KeyCode.UP)) {
+//            setMotion(3, 180d);
+//        } else if (set.contains(KeyCode.A) || set.contains(KeyCode.LEFT)) {
+//            setMotion(3, 270d);
+//        } else if (set.contains(KeyCode.S) || set.contains(KeyCode.DOWN)) {
+//            setMotion(3, 0d);
+//        } else if (set.contains(KeyCode.D) || set.contains(KeyCode.RIGHT)) {
+//            setMotion(3, 90d);
+//        } else if (set.isEmpty()) {
+//            setSpeed(0);
+//        }
     }
 
     private void monsterHit(Monster collider) {
