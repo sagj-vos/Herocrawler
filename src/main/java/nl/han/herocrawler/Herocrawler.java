@@ -6,8 +6,6 @@ import nl.han.herocrawler.scenes.GameOverScene;
 import nl.han.herocrawler.scenes.TitleScene;
 import nl.han.herocrawler.scenes.levels.LevelOneScene;
 import nl.han.herocrawler.scenes.levels.LevelTwoScene;
-import nl.han.herocrawler.scenes.tilemaps.LevelTileMap;
-import nl.han.herocrawler.scenes.tilemaps.TileMapLevelOne;
 
 public class Herocrawler extends YaegerGame {
     public static void main( String[] args ) {
@@ -23,8 +21,8 @@ public class Herocrawler extends YaegerGame {
     @Override
     public void setupScenes() {
         addScene(0, new TitleScene(this));
-        addScene(1, new GameOverScene(this));
-        addScene(2, new LevelOneScene());
-        addScene(3, new LevelTwoScene());
+        addScene(1, new LevelOneScene());
+        addScene(2, new LevelTwoScene());
+        addScene(3, new GameOverScene(this));
     }
 }
