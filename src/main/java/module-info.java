@@ -6,5 +6,6 @@ module Herocrawler {
     exports nl.han.herocrawler.scenes.tilemaps;
 
     opens backgrounds;
+    opens sprites;
     opens tiles;
 }
