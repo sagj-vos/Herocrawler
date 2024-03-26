@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Skeleton extends Monster {
 
-    protected Skeleton(String resource, Coordinate2D initialLocation, Size size, int rows, int columns) {
-        super(resource, initialLocation, size, rows, columns);
+    protected Skeleton(String resource, Coordinate2D initialLocation, Size size) {
+        super(resource, initialLocation, size);
     }
 
     @Override
