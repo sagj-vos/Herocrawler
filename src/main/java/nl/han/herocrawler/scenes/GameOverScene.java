@@ -27,7 +27,7 @@ public class GameOverScene extends StaticScene {
     public void setupEntities() {
         var gameOverSceneText = new TextEntity(
                 new Coordinate2D(getWidth() / 2, getHeight() / 4),
-                "GAMEOVER"
+                "GAME OVER"
         );
         gameOverSceneText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         gameOverSceneText.setFill(Color.WHITE);
