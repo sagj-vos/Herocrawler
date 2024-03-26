@@ -3,6 +3,7 @@ package nl.han.herocrawler.entities.monsters;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
+import com.github.hanyaeger.api.media.SoundClip;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class Skeleton extends Monster {
 
     @Override
     public void playSound() {
-        System.out.println("Skelly");
+        var attackSound = new SoundClip("audio/skeletonattack.mp3");
+        attackSound.play();
     }
 }
