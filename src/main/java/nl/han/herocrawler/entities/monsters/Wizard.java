@@ -8,7 +8,7 @@ import com.github.hanyaeger.api.media.SoundClip;
 import java.util.List;
 
 public class Wizard extends Monster {
-    protected Wizard(String resource, Coordinate2D initialLocation, Size size) {
+    public Wizard(String resource, Coordinate2D initialLocation, Size size) {
         super(resource, initialLocation, size);
     }
 

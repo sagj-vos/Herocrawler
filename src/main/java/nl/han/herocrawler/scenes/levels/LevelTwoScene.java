@@ -9,9 +9,11 @@ import nl.han.herocrawler.scenes.tilemaps.TileMapLevelTwo;
 
 public class LevelTwoScene extends DynamicScene implements TileMapContainer {
     private final Herocrawler herocrawler;
+    private final Player player;
 
-    public LevelTwoScene(Herocrawler herocrawler) {
+    public LevelTwoScene(Herocrawler herocrawler, Player player) {
         this.herocrawler = herocrawler;
+        this.player = player;
     }
     @Override
     public void setupScene() {
@@ -20,7 +22,7 @@ public class LevelTwoScene extends DynamicScene implements TileMapContainer {
 
     @Override
     public void setupEntities() {
-        addEntity(new Player(this.herocrawler, new Coordinate2D(getWidth() / 16 * 1.5, getHeight() / 2)));
+        addEntity(new Player(this.herocrawler, new Coordinate2D(getWidth() / 16 + 1, getHeight() / 2)));
     }
 
     @Override

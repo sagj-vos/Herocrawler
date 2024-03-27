@@ -11,15 +11,19 @@ import javafx.scene.Cursor;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import nl.han.herocrawler.Herocrawler;
 
 public abstract class Button extends CompositeEntity implements MouseButtonPressedListener, MouseEnterListener, MouseExitListener {
 
-    protected String text;
     private static final double BUTTON_WIDTH = 300;
     private static final double BUTTON_HEIGHT = 80;
-    protected Button(Coordinate2D initialLocation, String text) {
+    protected String text;
+
+    protected Herocrawler herocrawler;
+    protected Button(Coordinate2D initialLocation, String text, Herocrawler herocrawler) {
         super(initialLocation);
         this.text = text;
+        this.herocrawler = herocrawler;
     }
 
     @Override

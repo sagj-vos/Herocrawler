@@ -9,6 +9,7 @@ import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 public abstract class Entity extends DynamicSpriteEntity implements Collider, Collided {
     protected int numberOfHearts;
     protected int power;
+    protected int speed;
 
 
     protected Entity(String resource, Coordinate2D initialLocation, Size size) {

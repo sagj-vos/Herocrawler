@@ -5,10 +5,8 @@ import javafx.scene.input.MouseButton;
 import nl.han.herocrawler.Herocrawler;
 
 public class ExitButton extends Button {
-    private final Herocrawler herocrawler;
     public ExitButton(Coordinate2D initialLocation, Herocrawler herocrawler) {
-        super(initialLocation, "EXIT");
-        this.herocrawler = herocrawler;
+        super(initialLocation, "EXIT", herocrawler);
     }
 
     @Override

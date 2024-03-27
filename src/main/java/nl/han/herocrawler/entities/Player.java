@@ -27,7 +27,6 @@ public class Player extends Entity implements KeyListener {
     private final Herocrawler herocrawler;
     private int numberOfShields;
     private int level;
-    private double speed;
 
 
     public Player(Herocrawler herocrawler, Coordinate2D initialLocation) {

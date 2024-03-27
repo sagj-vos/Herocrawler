@@ -5,10 +5,8 @@ import javafx.scene.input.MouseButton;
 import nl.han.herocrawler.Herocrawler;
 
 public class ReplayButton extends Button{
-    private final Herocrawler herocrawler;
     public ReplayButton(Coordinate2D initialLocation, Herocrawler herocrawler) {
-        super(initialLocation, "REPLAY");
-        this.herocrawler = herocrawler;
+        super(initialLocation, "REPLAY", herocrawler);
     }
 
     @Override

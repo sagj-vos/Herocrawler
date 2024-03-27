@@ -5,10 +5,8 @@ import javafx.scene.input.MouseButton;
 import nl.han.herocrawler.Herocrawler;
 
 public class StartButton extends Button{
-    private final Herocrawler herocrawler;
     public StartButton(Coordinate2D initialLocation, Herocrawler herocrawler) {
-        super(initialLocation, "START");
-        this.herocrawler = herocrawler;
+        super(initialLocation, "START", herocrawler);
     }
 
     @Override

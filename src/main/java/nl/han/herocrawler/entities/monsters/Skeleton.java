@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Skeleton extends Monster {
 
-    protected Skeleton(String resource, Coordinate2D initialLocation, Size size) {
+    public Skeleton(String resource, Coordinate2D initialLocation, Size size) {
         super(resource, initialLocation, size);
     }
 
