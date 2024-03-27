@@ -7,6 +7,7 @@ import com.github.hanyaeger.api.scenes.TileMapContainer;
 import nl.han.herocrawler.Herocrawler;
 import nl.han.herocrawler.entities.Player;
 import nl.han.herocrawler.scenes.tilemaps.TileMapLevelOne;
+import nl.han.herocrawler.scenes.ui.heartdisplay.Heart;
 
 public class LevelOneScene extends DynamicScene implements TileMapContainer {
     private final Herocrawler herocrawler;
@@ -22,6 +23,7 @@ public class LevelOneScene extends DynamicScene implements TileMapContainer {
     @Override
     public void setupEntities() {
         addEntity(new Player(this.herocrawler,new Coordinate2D(400, 400)));
+        addEntity(new Heart(new Coordinate2D(0, 0)));
     }
 
     @Override
