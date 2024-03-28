@@ -7,6 +7,7 @@ import nl.han.herocrawler.entities.Player;
 
 public abstract class Monster extends Entity {
     protected int accuracy;
+    protected int walkingDirection;
     protected Monster(String resource, Coordinate2D initialLocation, Size size) {
         super(resource, initialLocation, size);
     }

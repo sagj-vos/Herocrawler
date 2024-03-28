@@ -6,6 +6,8 @@ import nl.han.herocrawler.entities.tiles.UnWalkableTile;
 import nl.han.herocrawler.entities.tiles.WalkableTile;
 
 public abstract class LevelTileMap extends TileMap {
+    public static final int TILE_MAP_WIDTH = 16;
+    public static final int TILE_MAP_HEIGHT = 12;
 
     @Override
     public void setupEntities() {

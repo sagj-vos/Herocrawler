@@ -4,6 +4,7 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.media.SoundClip;
+import nl.han.herocrawler.entities.tiles.UnWalkableTile;
 
 import java.util.List;
 
@@ -13,13 +14,21 @@ public class Wizard extends Monster {
 
         this.power = 1;
         this.numberOfHearts = 3;
-        this.speed = 0.85;
+        this.speed = 1.5;
         this.accuracy = 40;
+        this.walkingDirection = 90;
+
+        setMotion(this.speed, this.walkingDirection);
     }
 
     @Override
-    public void onCollision(List<Collider> list) {
-
+    public void onCollision(List<Collider> colliders) {
+        for (Collider collider : colliders) {
+            if (collider instanceof UnWalkableTile) {
+                this.walkingDirection = (this.walkingDirection + 180) % 360;
+                setMotion(this.speed, this.walkingDirection);
+            }
+        }
     }
 
     @Override

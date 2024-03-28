@@ -12,13 +12,9 @@ import nl.han.herocrawler.scenes.buttons.ExitButton;
 import nl.han.herocrawler.scenes.tilemaps.TileMapLevelTwo;
 import nl.han.herocrawler.scenes.ui.InventoryUi;
 
-public class LevelTwoScene extends DynamicScene implements TileMapContainer {
-    private final Herocrawler herocrawler;
-    private final Player player;
-
+public class LevelTwoScene extends LevelScene {
     public LevelTwoScene(Herocrawler herocrawler, Player player) {
-        this.herocrawler = herocrawler;
-        this.player = player;
+        super(herocrawler, player);
     }
     @Override
     public void setupScene() {
@@ -27,10 +23,7 @@ public class LevelTwoScene extends DynamicScene implements TileMapContainer {
 
     @Override
     public void setupEntities() {
-        addEntity(this.player);
-        addEntity(this.player.getHealthUI());
-        addEntity(new InventoryUi(new Coordinate2D(0, (getHeight() / 12 * 10))));
-        addEntity(new ExitButton(new Coordinate2D(getWidth() / 5 * 4, getHeight() / 12), this.herocrawler));
+    super.setupEntities();
 
         addEntity(new Skeleton(new Coordinate2D(getWidth() / 16 * 3 , getHeight()/ 12 * 2)));
         addEntity(new Skeleton(new Coordinate2D(getWidth() / 16 * 5 , getHeight()/ 12 * 9)));
