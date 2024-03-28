@@ -37,7 +37,7 @@ public class Player extends Entity implements KeyListener {
         this.initialLocation = initialLocation;
         this.level = 1;
         this.power = 1;
-        this.speed = 3.0;
+        this.speed = 1.0;
         this.numberOfHearts = 5;
         this.numberOfShields = 1;
     }
