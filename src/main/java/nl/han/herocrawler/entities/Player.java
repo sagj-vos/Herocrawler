@@ -25,6 +25,7 @@ public class Player extends Entity implements KeyListener {
     private static final int ARMOR_PROTECTION_VALUE = 13;
 
     private final Herocrawler herocrawler;
+    private final Coordinate2D initialLocation;
     private int numberOfShields;
     private int level;
 
@@ -33,9 +34,10 @@ public class Player extends Entity implements KeyListener {
         super("sprites/player.png", initialLocation, new Size(32, 32));
 
         this.herocrawler = herocrawler;
+        this.initialLocation = initialLocation;
         this.level = 1;
         this.power = 1;
-        this.speed = 1;
+        this.speed = 3.0;
         this.numberOfHearts = 5;
         this.numberOfShields = 1;
     }
@@ -62,6 +64,8 @@ public class Player extends Entity implements KeyListener {
                 if (this.numberOfHearts >= 5) continue;
 
                 this.numberOfHearts += 1;
+
+                ((Food)collider).remove();
                 continue;
             }
 
@@ -89,10 +93,13 @@ public class Player extends Entity implements KeyListener {
                     this.speed *= 1.25;
                     continue;
                 }
+
+                ((Potion)collider).remove();
             }
 
             if (collider instanceof Monster) {
                 this.monsterHit((Monster) collider);
+                setAnchorLocation(this.initialLocation);
             }
         }
     }
@@ -136,16 +143,16 @@ public class Player extends Entity implements KeyListener {
 
         switch (direction) {
             case 180:
-                setAnchorLocationY(getAnchorLocation().getY() + 1);
+                setAnchorLocationY(getAnchorLocation().getY() + this.speed);
                 break;
             case 270:
-                setAnchorLocationX(getAnchorLocation().getX() + 1);
+                setAnchorLocationX(getAnchorLocation().getX() + this.speed);
                 break;
             case 0:
-                setAnchorLocationY(getAnchorLocation().getY() - 1);
+                setAnchorLocationY(getAnchorLocation().getY() - this.speed);
                 break;
             case 90:
-                setAnchorLocationX(getAnchorLocation().getX() - 1);
+                setAnchorLocationX(getAnchorLocation().getX() - this.speed);
                 break;
         }
     }
