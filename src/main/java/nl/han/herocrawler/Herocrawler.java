@@ -8,6 +8,8 @@ import nl.han.herocrawler.scenes.GameOverScene;
 import nl.han.herocrawler.scenes.TitleScene;
 import nl.han.herocrawler.scenes.levels.LevelOneScene;
 import nl.han.herocrawler.scenes.levels.LevelTwoScene;
+import nl.han.herocrawler.scenes.ui.HealthUI;
+import nl.han.herocrawler.scenes.ui.hp.Health;
 
 public class Herocrawler extends YaegerGame {
 
@@ -25,7 +27,8 @@ public class Herocrawler extends YaegerGame {
 
     @Override
     public void setupScenes() {
-        var player = new Player(this, new Coordinate2D(WIDTH / 16 + 1, HEIGHT / 2));
+        var healthUI = new HealthUI(new Coordinate2D(0, 0));
+        var player = new Player(this, new Coordinate2D(WIDTH / 16 + 1, HEIGHT / 2), healthUI);
         addScene(0, new TitleScene(this));
         addScene(1, new LevelOneScene(this, player));
         addScene(2, new LevelTwoScene(this, player));
