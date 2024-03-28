@@ -33,6 +33,7 @@ public class GameOverScene extends StaticScene {
         gameOverSceneText.setFill(Color.WHITE);
         gameOverSceneText.setFont(Font.font("Roboto", FontWeight.BOLD, 60));
         addEntity(gameOverSceneText);
+
         addEntity(new ReplayButton(new Coordinate2D(getWidth() / 2, getHeight() / 2), this.herocrawler));
         addEntity(new ExitButton(new Coordinate2D(getWidth() / 2, getHeight() / 4 * 3), this.herocrawler));
     }

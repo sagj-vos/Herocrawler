@@ -34,9 +34,10 @@ public class Raas extends Monster{
     public void isHit(Player player) {
         super.isHit(player);
 
-        if (this.numberOfHearts < 1) {
-            this.herocrawler.setActiveScene(3);
-        }
+        if (this.numberOfHearts > 0) return;
+
+        // Go to game over screen
+        this.herocrawler.setActiveScene(3);
     }
 
     @Override

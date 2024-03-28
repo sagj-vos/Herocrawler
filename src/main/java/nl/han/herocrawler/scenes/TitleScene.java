@@ -33,6 +33,7 @@ public class TitleScene extends StaticScene {
         titleSceneText.setFill(Color.WHITE);
         titleSceneText.setFont(Font.font("Roboto", FontWeight.BOLD, 60));
         addEntity(titleSceneText);
+
         addEntity(new StartButton(new Coordinate2D(getWidth() / 2, getHeight() / 2), this.herocrawler));
         addEntity(new ExitButton(new Coordinate2D(getWidth() / 2, getHeight() / 4 * 3), this.herocrawler));
     }
