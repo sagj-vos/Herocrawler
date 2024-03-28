@@ -40,7 +40,7 @@ public class Raas extends Monster{
 
     @Override
     public void playSound() {
-        var attackSound = new SoundClip("audio/raafattack.mp3");
+        var attackSound = new SoundClip("audio/raas-attack.mp3");
         attackSound.play();
     }
 }

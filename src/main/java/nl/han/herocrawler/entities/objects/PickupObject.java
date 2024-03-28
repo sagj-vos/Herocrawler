@@ -9,4 +9,6 @@ public abstract class PickupObject extends SpriteEntity implements Collider {
     protected PickupObject(String resource, Coordinate2D initialLocation) {
         super(resource, initialLocation, new Size(16, 16));
     }
+
+    public abstract void playSound();
 }

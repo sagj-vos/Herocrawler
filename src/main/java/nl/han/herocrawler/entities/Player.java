@@ -190,7 +190,7 @@ public class Player extends Entity implements KeyListener {
 
     @Override
     public void playSound() {
-        var attackSound = new SoundClip("audio/humanattack.mp3");
+        var attackSound = new SoundClip("audio/human-attack.mp3");
         attackSound.play();
     }
 

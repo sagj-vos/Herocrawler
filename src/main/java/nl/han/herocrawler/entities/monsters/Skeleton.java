@@ -9,8 +9,8 @@ import java.util.List;
 
 public class Skeleton extends Monster {
 
-    public Skeleton(String resource, Coordinate2D initialLocation, Size size) {
-        super(resource, initialLocation, size);
+    public Skeleton(Coordinate2D initialLocation) {
+        super("sprites/skeleton.png", initialLocation, new Size(32, 32));
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Skeleton extends Monster {
 
     @Override
     public void playSound() {
-        var attackSound = new SoundClip("audio/skeletonattack.mp3");
+        var attackSound = new SoundClip("audio/skeleton-attack.mp3");
         attackSound.play();
     }
 }
