@@ -30,6 +30,7 @@ public class Herocrawler extends YaegerGame {
     public void setupScenes() {
         var healthUI = new HealthUI(new Coordinate2D(0, 0));
         var player = new Player(this, new Coordinate2D(WIDTH / 15.75, HEIGHT / 2), healthUI);
+
         addScene(0, new TitleScene(this));
         addScene(1, new LevelOneScene(this, player));
         addScene(2, new LevelTwoScene(this, player));

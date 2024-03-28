@@ -61,8 +61,8 @@ public class Player extends Entity implements KeyListener {
     @Override
     public void onCollision(List<Collider> colliders) {
         for (Collider collider : colliders) {
-            if (collider instanceof Entity) {
-                ((Entity)collider).playSound();
+            if (collider instanceof GameSound) {
+                ((GameSound)collider).playSound();
             }
 
             if (collider instanceof UnWalkableTile) {
@@ -107,7 +107,7 @@ public class Player extends Entity implements KeyListener {
                     // code to attack monsters
                     break;
                 case KeyCode.DIGIT1:
-                    break;
+                    setAnchorLocation(this.initialLocation);
                 case KeyCode.W:
                 case KeyCode.UP:
                     setMotion(this.speed, 180d);
@@ -226,6 +226,11 @@ public class Player extends Entity implements KeyListener {
             this.healthUI.updateShield(this.numberOfShields);
         } else {
             this.numberOfHearts -= collider.getPower();
+        }
+
+        if (this.numberOfHearts < 1) {
+            this.resetPlayer();
+            this.herocrawler.setActiveScene(3);
         }
 
         this.healthUI.updateHealth(this.numberOfHearts);
