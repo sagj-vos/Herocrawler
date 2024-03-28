@@ -8,6 +8,7 @@ import nl.han.herocrawler.entities.Player;
 import nl.han.herocrawler.scenes.buttons.ExitButton;
 import nl.han.herocrawler.scenes.tilemaps.LevelTileMap;
 import nl.han.herocrawler.scenes.ui.InventoryUi;
+import nl.han.herocrawler.scenes.ui.inventory.spells.TeleportSpell;
 
 public abstract class LevelScene extends DynamicScene implements TileMapContainer {
     protected static final  double TILE_CENTER_OFFSET = 0.25;
@@ -28,9 +29,11 @@ public abstract class LevelScene extends DynamicScene implements TileMapContaine
         this.tileWidth = getWidth() / LevelTileMap.TILE_MAP_WIDTH;
         this.tileHeight = getHeight() / LevelTileMap.TILE_MAP_HEIGHT;
 
+        var spell = new TeleportSpell(new Coordinate2D(0, 0));
+
         addEntity(this.player);
         addEntity(this.player.getHealthUI());
-        addEntity(new InventoryUi(new Coordinate2D(0, (getHeight() / 12 * 10))));
+        addEntity(new InventoryUi(new Coordinate2D(0, (getHeight() / 12 * 10)), spell));
         addEntity(new ExitButton(new Coordinate2D(getWidth() / 5 * 4, getHeight() / 12), this.herocrawler));
     }
 }
