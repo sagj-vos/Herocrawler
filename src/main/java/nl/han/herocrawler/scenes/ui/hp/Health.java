@@ -4,9 +4,9 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.impl.SpriteEntity;
 
-public abstract class Hp extends SpriteEntity {
+public abstract class Health extends SpriteEntity {
 
-    public Hp(String recourse, Coordinate2D initialLocation) {
+    public Health(String recourse, Coordinate2D initialLocation) {
         super(recourse, initialLocation, new Size(96, 96));
     }
 }
