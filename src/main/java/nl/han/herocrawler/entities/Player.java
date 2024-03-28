@@ -15,6 +15,8 @@ import nl.han.herocrawler.entities.objects.potions.Potion;
 import nl.han.herocrawler.entities.objects.potions.RedPotion;
 import nl.han.herocrawler.entities.tiles.StairsTile;
 import nl.han.herocrawler.entities.tiles.UnWalkableTile;
+import nl.han.herocrawler.scenes.ui.HealthUI;
+import nl.han.herocrawler.scenes.ui.hp.Health;
 
 import java.util.List;
 import java.util.Random;
@@ -26,15 +28,17 @@ public class Player extends Entity implements KeyListener {
 
     private final Herocrawler herocrawler;
     private final Coordinate2D initialLocation;
+    private final HealthUI healthUI;
     private int numberOfShields;
     private int level;
 
 
-    public Player(Herocrawler herocrawler, Coordinate2D initialLocation) {
+    public Player(Herocrawler herocrawler, Coordinate2D initialLocation, HealthUI healthUI) {
         super("sprites/player.png", initialLocation, new Size(32, 32));
 
         this.herocrawler = herocrawler;
         this.initialLocation = initialLocation;
+        this.healthUI = healthUI;
         this.level = 1;
         this.power = 1;
         this.speed = 1.0;
@@ -42,6 +46,17 @@ public class Player extends Entity implements KeyListener {
         this.numberOfShields = 1;
     }
 
+    public void resetPlayer() {
+        this.level = 1;
+        this.speed = 1.0;
+        this.numberOfShields = 1;
+        this.numberOfHearts = 5;
+
+        setAnchorLocation(this.initialLocation);
+
+        this.healthUI.updateHealth(this.numberOfHearts);
+        this.healthUI.updateShield(this.numberOfShields);
+    }
 
     @Override
     public void onCollision(List<Collider> colliders) {
@@ -61,45 +76,16 @@ public class Player extends Entity implements KeyListener {
             }
 
             if (collider instanceof Food) {
-                if (this.numberOfHearts >= 5) continue;
-
-                this.numberOfHearts += 1;
-
-                ((Food)collider).remove();
+                this.eatFood(((Food)collider));
                 continue;
             }
 
             if (collider instanceof Potion) {
-                if (collider instanceof RedPotion) {
-                    if (this.numberOfHearts >= 5) continue;
-                    if (this.numberOfHearts == 4) {
-                        this.numberOfHearts += 1;
-                    } else {
-                        this.numberOfHearts += 2;
-                    }
-
-                    continue;
-                }
-
-                if (collider instanceof BluePotion) {
-                    if (this.numberOfShields >= 3) continue;
-
-                    this.numberOfShields += 1;
-
-                    continue;
-                }
-
-                if (collider instanceof GreenPotion) {
-                    this.speed *= 1.25;
-                    continue;
-                }
-
-                ((Potion)collider).remove();
+                this.drinkPotion(((Potion)collider));
             }
 
             if (collider instanceof Monster) {
                 this.monsterHit((Monster) collider);
-                setAnchorLocation(this.initialLocation);
             }
         }
     }
@@ -114,6 +100,7 @@ public class Player extends Entity implements KeyListener {
         for (KeyCode keyCode : keyCodes) {
             switch (keyCode) {
                 case KeyCode.SPACE:
+                    // code to attack monsters
                     break;
                 case KeyCode.DIGIT1:
                     break;
@@ -134,6 +121,47 @@ public class Player extends Entity implements KeyListener {
                     setMotion(this.speed, 90d);
                     break;
             }
+        }
+    }
+
+    private void eatFood(Food food) {
+        food.remove();
+
+        if (this.numberOfHearts >= 5) return;
+
+        this.numberOfHearts += 1;
+
+        this.healthUI.updateHealth(this.numberOfHearts);
+    }
+
+    private void drinkPotion(Potion potion) {
+        potion.remove();
+
+        if (potion instanceof RedPotion) {
+            if (this.numberOfHearts >= 5) return;
+            if (this.numberOfHearts == 4) {
+                this.numberOfHearts += 1;
+            } else {
+                this.numberOfHearts += 2;
+            }
+
+            this.healthUI.updateHealth(this.numberOfHearts);
+
+            return;
+        }
+
+        if (potion instanceof BluePotion) {
+            if (this.numberOfShields >= 3) return;
+
+            this.numberOfShields += 1;
+
+            this.healthUI.updateShield(this.numberOfShields);
+
+            return;
+        }
+
+        if (potion instanceof GreenPotion) {
+            this.speed *= 1.25;
         }
     }
 
@@ -159,10 +187,15 @@ public class Player extends Entity implements KeyListener {
 
     private void levelUp() {
         this.level += 1;
+
+        setAnchorLocation(this.initialLocation);
+
         this.herocrawler.setActiveScene(this.level);
     }
 
     private void monsterHit(Monster collider) {
+        setAnchorLocation(this.initialLocation);
+
         Random rand = new Random();
 
         // Calculate the chance bounds for lousing life
@@ -181,9 +214,13 @@ public class Player extends Entity implements KeyListener {
                 this.numberOfHearts += this.numberOfShields;
                 this.numberOfShields = 0;
             }
+
+            this.healthUI.updateShield(this.numberOfShields);
         } else {
             this.numberOfHearts -= collider.getPower();
         }
+
+        this.healthUI.updateHealth(this.numberOfHearts);
 
         this.playSound();
     }
@@ -198,4 +235,5 @@ public class Player extends Entity implements KeyListener {
     public int getPower() {
         return this.power * this.level;
     }
+    public HealthUI getHealthUI() { return this.healthUI; }
 }
