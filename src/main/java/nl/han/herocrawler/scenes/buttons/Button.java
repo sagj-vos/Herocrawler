@@ -28,12 +28,16 @@ public abstract class Button extends CompositeEntity implements MouseButtonPress
 
     @Override
     protected void setupEntities() {
-        var container = new ButtonContainer(new Coordinate2D(getHeight() / 2 - (BUTTON_WIDTH / 2),
-                getHeight() / 2 - (BUTTON_HEIGHT / 2)),
+        var buttonPositionX = getWidth() / 2;
+        var buttonPositionY = getHeight() / 2;
+        var container = new ButtonContainer(new Coordinate2D(
+                buttonPositionX - (BUTTON_WIDTH / 2),
+                buttonPositionY - (BUTTON_HEIGHT / 2)),
                 BUTTON_WIDTH, BUTTON_HEIGHT);
         addEntity(container);
+
         var buttonText = new TextEntity(
-                new Coordinate2D(getWidth() / 2, getHeight() / 4),
+                new Coordinate2D(buttonPositionX, buttonPositionY / 4),
                 this.text
         );
         buttonText.setAnchorPoint(AnchorPoint.CENTER_CENTER);

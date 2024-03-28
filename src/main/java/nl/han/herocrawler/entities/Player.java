@@ -67,17 +67,14 @@ public class Player extends Entity implements KeyListener {
 
             if (collider instanceof UnWalkableTile) {
                 this.stopMovement();
-                continue;
             }
 
             if (collider instanceof StairsTile) {
                 this.levelUp();
-                continue;
             }
 
             if (collider instanceof Food) {
                 this.eatFood(((Food)collider));
-                continue;
             }
 
             if (collider instanceof Potion) {
@@ -143,6 +140,7 @@ public class Player extends Entity implements KeyListener {
 
         if (potion instanceof RedPotion) {
             if (this.numberOfHearts >= 5) return;
+
             if (this.numberOfHearts == 4) {
                 this.numberOfHearts += 1;
             } else {
@@ -151,7 +149,6 @@ public class Player extends Entity implements KeyListener {
 
             this.healthUI.updateHealth(this.numberOfHearts);
 
-            return;
         }
 
         if (potion instanceof BluePotion) {
@@ -160,8 +157,6 @@ public class Player extends Entity implements KeyListener {
             this.numberOfShields += 1;
 
             this.healthUI.updateShield(this.numberOfShields);
-
-            return;
         }
 
         if (potion instanceof GreenPotion) {
@@ -228,6 +223,7 @@ public class Player extends Entity implements KeyListener {
             this.numberOfHearts -= collider.getPower();
         }
 
+        // go to game over screen
         if (this.numberOfHearts < 1) {
             this.resetPlayer();
             this.herocrawler.setActiveScene(3);
