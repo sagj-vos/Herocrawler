@@ -18,6 +18,7 @@ public class Raas extends Monster{
         this.numberOfHearts = 10;
         this.power = 2;
         this.accuracy = 80;
+        this.speed = 0.0;
     }
 
     @Override

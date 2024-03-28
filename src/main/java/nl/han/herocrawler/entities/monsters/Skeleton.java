@@ -11,6 +11,9 @@ public class Skeleton extends Monster {
 
     public Skeleton(Coordinate2D initialLocation) {
         super("sprites/skeleton.png", initialLocation, new Size(32, 32));
+        this.power = 1;
+        this.accuracy = 80;
+        this.speed = 0.75;
     }
 
     @Override

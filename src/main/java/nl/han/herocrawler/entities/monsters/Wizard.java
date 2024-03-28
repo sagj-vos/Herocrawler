@@ -10,6 +10,11 @@ import java.util.List;
 public class Wizard extends Monster {
     public Wizard(Coordinate2D initialLocation) {
         super("sprites/wizard.png", initialLocation, new Size(32, 32));
+
+        this.power = 1;
+        this.numberOfHearts = 3;
+        this.speed = 0.85;
+        this.accuracy = 40;
     }
 
     @Override
