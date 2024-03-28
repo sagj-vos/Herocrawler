@@ -6,7 +6,7 @@ import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 
-public abstract class Entity extends DynamicSpriteEntity implements Collider, Collided {
+public abstract class Entity extends DynamicSpriteEntity implements Collider, Collided, GameSound {
     protected int numberOfHearts;
     protected int power;
     protected double speed;
@@ -15,8 +15,6 @@ public abstract class Entity extends DynamicSpriteEntity implements Collider, Co
     protected Entity(String resource, Coordinate2D initialLocation, Size size) {
         super(resource, initialLocation, size);
     }
-
-    public abstract void playSound();
 
     public int getPower() {
         return this.power;
