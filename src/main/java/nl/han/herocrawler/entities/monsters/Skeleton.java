@@ -20,7 +20,7 @@ public class Skeleton extends Monster {
 
     @Override
     public void playSound() {
-        var attackSound = new SoundClip("audio/skeletonattack.mp3");
+        var attackSound = new SoundClip("audio/skeleton-attack.mp3");
         attackSound.play();
     }
 }

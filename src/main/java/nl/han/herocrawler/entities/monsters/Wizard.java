@@ -19,7 +19,7 @@ public class Wizard extends Monster {
 
     @Override
     public void playSound() {
-        var attackSound = new SoundClip("audio/wizardattack.mp3");
+        var attackSound = new SoundClip("audio/wizard-attack.mp3");
         attackSound.play();
     }
 }
