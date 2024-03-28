@@ -7,6 +7,7 @@ module Herocrawler {
 
     opens audio;
     opens backgrounds;
+    opens objects;
     opens sprites;
     opens tiles;
     opens ui;

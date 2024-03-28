@@ -10,7 +10,6 @@ import nl.han.herocrawler.entities.monsters.Skeleton;
 import nl.han.herocrawler.entities.monsters.Wizard;
 import nl.han.herocrawler.scenes.buttons.ExitButton;
 import nl.han.herocrawler.scenes.tilemaps.TileMapLevelTwo;
-import nl.han.herocrawler.scenes.ui.HpUi;
 import nl.han.herocrawler.scenes.ui.InventoryUi;
 
 public class LevelTwoScene extends DynamicScene implements TileMapContainer {
@@ -29,7 +28,7 @@ public class LevelTwoScene extends DynamicScene implements TileMapContainer {
     @Override
     public void setupEntities() {
         addEntity(this.player);
-        addEntity(new HpUi(new Coordinate2D(0, 0)));
+        addEntity(this.player.getHealthUI());
         addEntity(new InventoryUi(new Coordinate2D(0, (getHeight() / 12 * 10))));
         addEntity(new ExitButton(new Coordinate2D(getWidth() / 5 * 4, getHeight() / 12), this.herocrawler));
 

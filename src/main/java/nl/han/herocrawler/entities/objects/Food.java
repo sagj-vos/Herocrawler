@@ -4,8 +4,8 @@ import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.media.SoundClip;
 
 public class Food extends PickupObject {
-    public Food(Coordinate2D initialLocation) {
-        super("", initialLocation);
+    public Food(String recourse, Coordinate2D initialLocation) {
+        super(recourse, initialLocation);
     }
 
     @Override

@@ -7,6 +7,8 @@ import nl.han.herocrawler.Herocrawler;
 import nl.han.herocrawler.entities.Player;
 import nl.han.herocrawler.entities.monsters.Skeleton;
 import nl.han.herocrawler.entities.monsters.Wizard;
+import nl.han.herocrawler.entities.objects.Food;
+import nl.han.herocrawler.entities.objects.potions.BluePotion;
 import nl.han.herocrawler.scenes.buttons.ExitButton;
 import nl.han.herocrawler.scenes.tilemaps.TileMapLevelOne;
 import nl.han.herocrawler.scenes.ui.InventoryUi;
@@ -38,6 +40,14 @@ public class LevelOneScene extends DynamicScene implements TileMapContainer {
         addEntity(new Wizard(new Coordinate2D(getWidth() / 16 * 7 , getHeight()/ 12 * 2)));
         addEntity(new Wizard(new Coordinate2D(getWidth() / 16 * 11 , getHeight()/ 12 * 7)));
         addEntity(new Wizard(new Coordinate2D(getWidth() / 16 * 12 , getHeight()/ 12 * 3)));
+
+        addEntity(new Food("objects/banana.png", new Coordinate2D(getWidth()/ 16 * 3.25, getHeight() / 12 * 7.25)));
+        addEntity(new Food("objects/grape.png", new Coordinate2D(getWidth()/ 16 * 4.25, getHeight() / 12 * 9.25)));
+        addEntity(new Food("objects/lemon.png", new Coordinate2D(getWidth()/ 16 * 12.25, getHeight() / 12 * 9.25)));
+        addEntity(new Food("objects/orange.png", new Coordinate2D(getWidth()/ 16 * 9.25, getHeight() / 12 * 2.25)));
+        addEntity(new Food("objects/pear.png", new Coordinate2D(getWidth()/ 16 * 14.25, getHeight() / 12 * 3.25)));
+
+        addEntity(new BluePotion(new Coordinate2D(getWidth()/ 16 * 4.25, getHeight() / 12 * 2.25)));
     }
 
     @Override
