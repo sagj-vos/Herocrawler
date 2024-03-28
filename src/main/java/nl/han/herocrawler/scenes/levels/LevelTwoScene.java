@@ -22,7 +22,7 @@ public class LevelTwoScene extends DynamicScene implements TileMapContainer {
 
     @Override
     public void setupEntities() {
-        addEntity(new Player(this.herocrawler, new Coordinate2D(getWidth() / 16 + 1, getHeight() / 2)));
+        addEntity(this.player);
     }
 
     @Override
