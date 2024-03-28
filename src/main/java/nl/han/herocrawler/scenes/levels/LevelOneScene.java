@@ -31,15 +31,14 @@ public class LevelOneScene extends DynamicScene implements TileMapContainer {
         addEntity(new HpUi(new Coordinate2D(0, 0)));
         addEntity(new InventoryUi(new Coordinate2D(0, (getHeight() / 12 * 10))));
         addEntity(new ExitButton(new Coordinate2D(getWidth() / 5 * 4, getHeight() / 12), this.herocrawler));
+
         addEntity(new Skeleton(new Coordinate2D(getWidth() / 16 * 2 , getHeight()/ 12 * 8)));
         addEntity(new Skeleton(new Coordinate2D(getWidth() / 16 * 3 , getHeight()/ 12 * 3)));
-        addEntity(new Skeleton(new Coordinate2D(getWidth() / 16 * 7 , getHeight()/ 12 * 4)));
-        addEntity(new Skeleton(new Coordinate2D(getWidth() / 16 * 6 , getHeight()/ 12 * 7)));
-        addEntity(new Skeleton(new Coordinate2D(getWidth() / 16 * 13 , getHeight()/ 12 * 9)));
-        addEntity(new Wizard(new Coordinate2D(getWidth() / 16 * 5 , getHeight()/ 12 * 5)));
-        addEntity(new Wizard(new Coordinate2D(getWidth() / 16 * 9 , getHeight()/ 12 * 7)));
-        addEntity(new Wizard(new Coordinate2D(getWidth() / 16 * 12 , getHeight()/ 12 * 7)));
-        addEntity(new Wizard(new Coordinate2D(getWidth() / 16 * 13 , getHeight()/ 12 * 3)));
+
+        addEntity(new Wizard(new Coordinate2D(getWidth() / 16 * 7 , getHeight()/ 12 * 7)));
+        addEntity(new Wizard(new Coordinate2D(getWidth() / 16 * 7 , getHeight()/ 12 * 2)));
+        addEntity(new Wizard(new Coordinate2D(getWidth() / 16 * 11 , getHeight()/ 12 * 7)));
+        addEntity(new Wizard(new Coordinate2D(getWidth() / 16 * 12 , getHeight()/ 12 * 3)));
     }
 
     @Override
