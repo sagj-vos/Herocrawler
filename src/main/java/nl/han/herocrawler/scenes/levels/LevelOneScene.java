@@ -58,7 +58,7 @@ public class LevelOneScene extends LevelScene {
         )));
         addEntity(new Food("objects/lemon.png", new Coordinate2D(
                 this.tileWidth * (12 + TILE_CENTER_OFFSET),
-                this.tileWidth * (9 + TILE_CENTER_OFFSET)
+                this.tileHeight * (9 + TILE_CENTER_OFFSET)
         )));
         addEntity(new Food("objects/orange.png", new Coordinate2D(
                 this.tileWidth * (9 + TILE_CENTER_OFFSET),

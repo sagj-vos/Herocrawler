@@ -11,6 +11,6 @@ public class StartButton extends Button{
 
     @Override
     public void onMouseButtonPressed(MouseButton mouseButton, Coordinate2D coordinate2D) {
-        this.herocrawler.setActiveScene(1);
+        this.herocrawler.setActiveScene(2);
     }
 }

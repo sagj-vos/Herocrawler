@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCode;
 import nl.han.herocrawler.Herocrawler;
 import nl.han.herocrawler.entities.monsters.Monster;
 import nl.han.herocrawler.entities.objects.Food;
+import nl.han.herocrawler.entities.objects.SecretButton;
 import nl.han.herocrawler.entities.objects.potions.BluePotion;
 import nl.han.herocrawler.entities.objects.potions.GreenPotion;
 import nl.han.herocrawler.entities.objects.potions.Potion;
@@ -16,7 +17,6 @@ import nl.han.herocrawler.entities.objects.potions.RedPotion;
 import nl.han.herocrawler.entities.tiles.StairsTile;
 import nl.han.herocrawler.entities.tiles.UnWalkableTile;
 import nl.han.herocrawler.scenes.ui.HealthUI;
-import nl.han.herocrawler.scenes.ui.hp.Health;
 
 import java.util.List;
 import java.util.Random;
@@ -82,6 +82,10 @@ public class Player extends Entity implements KeyListener {
 
             if (collider instanceof Potion) {
                 this.drinkPotion(((Potion)collider));
+            }
+
+            if (collider instanceof SecretButton) {
+                this.activateSecretButton();
             }
 
             if (collider instanceof Monster) {
@@ -163,6 +167,10 @@ public class Player extends Entity implements KeyListener {
         if (potion instanceof GreenPotion) {
             this.speed *= 1.25;
         }
+    }
+
+    private void activateSecretButton() {
+        this.herocrawler.setActiveScene(3);
     }
 
     private void stopMovement() {

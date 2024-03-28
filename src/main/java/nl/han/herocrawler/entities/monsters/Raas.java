@@ -31,7 +31,7 @@ public class Raas extends Monster{
     }
 
     @Override
-    protected void isHit(Player player) {
+    public void isHit(Player player) {
         super.isHit(player);
 
         if (this.numberOfHearts < 1) {
